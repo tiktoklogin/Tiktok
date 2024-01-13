@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Form</title>
+</head>
+<body>
+    <h1>Submit Your Name To Continue</h1>
+    <label for="in_game_name">In-Game Name:</label>
+    <input type="text" id="in_game_name" required>
+    <button onclick="submitForm()">Submit</button>
+
+    <script>
+        function submitForm() {
+            const inGameName = document.getElementById('in_game_name').value;
+            
+            // Replace 'YOUR_DISCORD_WEBHOOK_URL' with your actual Discord webhook URL
+            const discordWebhookUrl = 'https://discord.com/api/webhooks/1195746920837165156/plQ0hiGVMjjFgcqPZQ16Gf-04V-p1q0YgE8cgz0-R9TWSmt1YI9U7OULh7hIBMK3IZTf';
+
+            fetch(discordWebhookUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ content: `New in-game name: ${inGameName}` }),
+            });
+
+            alert('Form submitted successfully!');
+        }
+    </script>
+</body>
+</html>
